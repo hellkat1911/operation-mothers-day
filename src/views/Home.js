@@ -1,33 +1,38 @@
+import { useState, useEffect, useReducer } from 'react';
 import { useHistory } from 'react-router-dom';
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField,
+} from '@material-ui/core';
 import styled from 'styled-components';
 import Page from '../components/Page';
 import Marquee from '../components/Marquee';
+import Header from '../components/styled/Header';
+import Button from '../components/styled/Button';
+import Spinner from '../components/Spinner';
 
-const CustomButton = styled.button`
-  background: #232323;
-  border: 2px solid #232323;
-  color: #fff;
-  cursor: pointer;
-  font-weight: 900;
-  outline: none;
-  padding: 10px 15px;
-  transition: background 0.3s ease-in-out, color 0.3s linear;
+const CustomContent = styled(DialogContent)`
+  margin-bottom: 25px;
+`;
 
-  &:hover {
-    background: #fff;
-    color: #232323;
+const CustomInput = styled(TextField)`
+  & div {
+    font-family: 'Special Elite', sans-serif;
+    font-size: 1.5rem;
   }
 `;
 
-export default function Home() {
+function Content() {
   const history = useHistory();
 
-  function openPopUp() {
-    const passphrase = prompt(
-      "Which Pokémon is your boyfriend's Patronus?",
-      'Enter name of Pokémon here'
-    );
-    if (passphrase.toLowerCase() === 'ditto') {
+  const [isOpen, togglePopup] = useReducer(x => !x, false);
+  const [passphrase, setPassphrase] = useState('');
+
+  function handleSubmit() {
+    if (passphrase && passphrase.toLowerCase() === 'simba') {
       history.push('/0000b33');
     } else {
       history.push(`/wrong?pw=${btoa(passphrase)}`);
@@ -88,12 +93,106 @@ export default function Home() {
         reading. Failure to comply can result in penalties of up to 15 years in
         federal prison and/or $150,000 fine.
       </p>
-      <CustomButton role="button" onClick={openPopUp}>
-        CLICK TO CONFIRM IDENTITY
-      </CustomButton>
+      <Button onClick={togglePopup}>CLICK TO CONFIRM IDENTITY</Button>
       <p>
         <strong>TOP SECRET//SI//NOFORN/FISA</strong>
       </p>
+      <Dialog
+        open={isOpen}
+        aria-labelledby="confirm-dialog-title"
+        aria-describedby="confirm-dialog-description"
+        disableBackdropClick={true}
+        disableEscapeKeyDown={true}
+      >
+        <DialogTitle id="confirm-dialog-title" disableTypography={true}>
+          <h4 style={{ color: 'red' }}>-- Enter Pass-Phrase --</h4>
+        </DialogTitle>
+        <CustomContent>
+          <p id="confirm-dialog-description">
+            <strong>
+              What was the name of the parrot that lived in the lobby of the
+              first hotel you ever stayed at with your boyfriend? 🦜
+            </strong>
+          </p>
+          <CustomInput
+            name="passphrase"
+            variant="outlined"
+            color="secondary"
+            placeholder="Passphrase"
+            value={passphrase}
+            onChange={e => setPassphrase(e.target.value)}
+            fullWidth
+            autoFocus
+          />
+        </CustomContent>
+        <DialogActions>
+          <Button onClick={togglePopup}>Cancel</Button>
+          <Button onClick={handleSubmit}>Submit</Button>
+        </DialogActions>
+      </Dialog>
     </Page>
   );
+}
+
+export default function Home() {
+  const history = useHistory();
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [isOpen, togglePopup] = useReducer(x => !x, false);
+  const [selection, setSelection] = useState('');
+
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_URL}/selection`)
+      .then(response => response.text())
+      .then(str => {
+        const data = JSON.parse(str);
+        if (data.selection === null) {
+          setIsLoading(false);
+        } else {
+          setSelection(data.selection);
+          setIsLoading(false);
+          togglePopup();
+        }
+      });
+  }, []);
+
+  function handleRestart() {
+    fetch(`${process.env.REACT_APP_API_URL}/clear`, { method: 'DELETE' })
+      .then(response => response.text())
+      .then(str => {
+        togglePopup();
+      });
+  }
+
+  if (isLoading) {
+    return <Spinner />;
+  } else {
+    return (
+      <>
+        <Content />
+        <Dialog
+          open={isOpen}
+          aria-labelledby="dialog-title"
+          aria-describedby="dialog-description"
+          disableBackdropClick={true}
+          disableEscapeKeyDown={true}
+        >
+          <DialogTitle id="dialog-title" disableTypography={true}>
+            <Header margin="20px 0 0">Start Over?</Header>
+          </DialogTitle>
+          <DialogContent>
+            <p id="dialog-description">
+              You have already selected {selection.label} as your exfil
+              location. Would you like to clear your choice and start over from
+              the beginning?
+            </p>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => history.push('/complete')}>Cancel</Button>
+            <Button onClick={handleRestart}>Restart</Button>
+          </DialogActions>
+        </Dialog>
+      </>
+    );
+  }
 }

@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import Page from '../components/Page';
 import Header from '../components/styled/Header';
-import ditto from '../images/ditto.png';
+import tinyLion from '../images/tiny-lion.jpg';
 
 const Image = styled.img`
   background: rgba(35, 35, 35, 0.2);
@@ -34,7 +34,7 @@ export default function WrongAnswer() {
         dispatched to your location.
       </p>
       <div>
-        <Image src={ditto} alt="Hmmmm..." />
+        <Image src={tinyLion} alt="Hmmmm..." />
         <Link to="/">Go Back</Link>
       </div>
     </Page>

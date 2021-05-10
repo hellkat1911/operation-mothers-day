@@ -7,6 +7,7 @@ import ExfilOption from '../components/ExfilOption';
 import FlexContainer from '../components/styled/FlexContainer';
 import ImageFrame from '../components/styled/ImageFrame';
 import Timer from '../components/Timer';
+import Dropdown from '../components/Dropdown';
 
 import Bee2 from '../images/bee-2.jpg';
 import Bee3 from '../images/bee-3.jpg';
@@ -35,7 +36,7 @@ const HR = styled.hr`
 function fetchImage(name) {
   if (!name) return null;
   // webpack's context module can import assets dynamically
-  return require.context('../images', true, /.jpg$/);
+  return require.context('../images', false, /.jpg$/)(`./${name}`).default;
 }
 
 export default function Confirmed() {
@@ -70,7 +71,7 @@ export default function Confirmed() {
       </p>
       <p>
         <strong>
-          You answered: "<span style={{ color: 'red' }}>Ditto</span>".
+          You answered: "<span style={{ color: 'red' }}>Simba</span>".
         </strong>
       </p>
       <p>Welcome back, Operator!</p>
@@ -85,29 +86,16 @@ export default function Confirmed() {
               name={item.name}
               description={item.description}
               location={item.location}
-              // don't forget the '.default' or it won't work
-              image={fetchImage(`./${item.image}`).default}
+              image={fetchImage(item.image)}
               url={item.url}
             />
             <HR margin="20px 0" />
           </Fragment>
         );
       })}
-      <p>
-        We would like to take this opportunity to acknowledge your service above
-        and beyond the call of duty. You have the sincere gratitude of a
-        grateful nation. Of course, any intentional or accidental disclosure of
-        any classified information, including intelligence materiel, names of
-        current or former operatives, or any operational details will result in
-        your immediate extra-judicial detainment.
-      </p>
-      <p>
-        <strong>
-          CODE-WORD MOTHERS-DAY: STATUS:{' '}
-          <span style={{ color: 'red' }}>ARCHIVED</span>
-        </strong>
-      </p>
-      <p>
+      <p>Consider carefully and make your selection below:</p>
+      <Dropdown />
+      <p style={{ marginTop: 50 }}>
         <strong>TOP SECRET//SI//NOFORN/FISA</strong>
       </p>
     </Page>

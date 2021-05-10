@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from '../views/Home';
 import Confirmed from '../views/Confirmed';
 import WrongAnswer from '../views/WrongAnswer';
+import Complete from '../views/Complete';
 
 export default function ClientRouter() {
   return (
@@ -17,6 +18,9 @@ export default function ClientRouter() {
         </Route>
         <Route path="/wrong" exact>
           <WrongAnswer />
+        </Route>
+        <Route path="/complete" exact>
+          <Complete />
         </Route>
       </Switch>
     </Router>

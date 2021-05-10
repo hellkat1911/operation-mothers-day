@@ -1,6 +1,7 @@
 [
   {
     "name": "Book Hunting",
+    "value": "book-hunting",
     "description": "This location offers several independent bookstores, record shops, and other local businesses where you and your exfil officer will blend in seamlessly. Acting as weekend tourists, the federal government will provide an AirBnb suitable to your cover while you are careful, thoroughly, and meticulously debriefed.",
     "location": "Rochester, NY",
     "image": "greenwood-books.jpg",
@@ -8,6 +9,7 @@
   },
   {
     "name": "Bed & Breakfast",
+    "value": "b&b",
     "description": "Neither your life nor your gathered intelligence will be at risk once you arrive at a quiet, secluded bed & breakfast for a weekend stay. While there are many within your operational theater, 10 Fitch in Auburn is an ideal candidate. No one will think twice about two people checking in for a weekend, and to protect your cover it's recommended you take advantage of several of the services provided by the establishment: European rain showers, Turkish bath towels, and in-suite massages. Your exfil officer will squeeze everything he can out of you during your stay.",
     "location": "Auburn, NY",
     "image": "10-fitch.jpg",
@@ -15,6 +17,7 @@
   },
   {
     "name": "Bully Hill Vineyards",
+    "value": "winery",
     "description": "With spring having arrived and warm weather on the horizon, touring a winery won't seem out of place to anyone attempting to track your movements. Bully Hill is renowned nation-wide for their excellent selection of wines with clever names and hand-drawn labels. AirBnbs are plentiful in the region, and you won't have an issue selecting one with your exfil officer. Once there, it's imperative that you try to enjoy yourself. Be warned: your companion officer is authorized to use force to ensure compliance with the debriefing protocol. A few bottles of Love My Goat Red might wet your lips enough to obviate the need for rough stuff... or not.",
     "location": "Hammondsport, NY",
     "image": "bully-hill.jpg",
@@ -22,6 +25,8 @@
   },
   {
     "name": "&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;",
+    "altName": "Other",
+    "value": "other",
     "description": "We anticipate that circumstances may dictate a deviation from the standard debriefing procedures. If this is the case, you may discuss contingency locations with your assigned exfil officer. He's experienced and professional, and will be sure cover all the bases and touch all the important spots regardless of venue.",
     "location": "???",
     "url": ""

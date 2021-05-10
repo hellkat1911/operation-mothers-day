@@ -4,11 +4,10 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const routes = require('./routes');
 
-dotenv.config({ path: '.env' });
+dotenv.config({ path: '.env.api' });
 
 const corsOptions = {
   origin: process.env.APP,
-  // credentials: true,
 };
 app.use(cors(corsOptions));
 

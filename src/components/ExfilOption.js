@@ -3,6 +3,7 @@ import ImageFrame from './styled/ImageFrame';
 
 const Container = styled.div`
   background: #232323;
+  border: ${props => (props.active ? '3px solid red' : '3px solid black')};
   margin-bottom: 15px;
   padding: 20px;
 
