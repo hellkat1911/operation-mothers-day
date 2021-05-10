@@ -37,9 +37,16 @@ export default function ExfilOptions({
       </p>
       <p>{description}</p>
       {image && url ? (
-        <a href={url} target="_blank" rel="noreferrer noopener">
-          <ImageFrame image={image} />
-        </a>
+        <ImageFrame image={image}>
+          <a
+            href={url}
+            target="_blank"
+            rel="noreferrer noopener"
+            style={{ display: 'inline-block', height: '100%', width: '100%' }}
+          >
+            &nbsp;
+          </a>
+        </ImageFrame>
       ) : null}
     </Container>
   );

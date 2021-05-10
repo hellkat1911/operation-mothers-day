@@ -13,13 +13,12 @@ const options = data.map(item => ({
 async function postData(url = '', data = {}) {
   const response = await fetch(url, {
     method: 'POST',
-    credentials: 'omit',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
   });
-  return { status: response.status, data: await response.json() };
+  return { status: response.status };
 }
 
 export default function Dropdown() {

@@ -42,8 +42,6 @@ exports.sendSms = (req, res) => {
     console.log('Selection written successfully');
   });
 
-  return res.json({ status: 'sent', message });
-
   if (!value || !label) {
     return res.status(400).json({ err: 'Must include a valid selection' });
   }

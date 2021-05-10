@@ -4,7 +4,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const routes = require('./routes');
 
-dotenv.config({ path: '.env.api' });
+dotenv.config({ path: 'api.env' });
 
 const corsOptions = {
   origin: process.env.APP,
