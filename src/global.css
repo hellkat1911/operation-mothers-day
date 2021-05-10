@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
+html {
+  box-sizing: border-box;
+  font-size: 10px;
+}
+
+body {
+  background: #232323;
+  font-family: 'Special Elite', 'Roboto', 'Ubuntu', -apple-system,
+    BlinkMacSystemFont, sans-serif;
+  font-size: 1.5rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  margin: 0;
+  line-height: 1.5;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Special Elite', sans-serif;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+strong {
+  font-weight: 900;
+}
+
+a {
+  color: red;
+  transition: color 0.15s linear;
+}
+
+a:hover {
+  color: darkred;
+}
