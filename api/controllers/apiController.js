@@ -21,12 +21,15 @@ exports.clearSelection = (req, res) => {
     }
     console.log('Selection cleared successfully');
   });
-
   return res.status(200).send('OKAY');
 };
 
 exports.sendSms = (req, res) => {
   const { value, label } = req.body;
+
+  if (!value || !label) {
+    return res.status(400).json({ err: 'Must include a valid selection' });
+  }
 
   const selection = JSON.stringify({ selection: { label, value } });
   const message = `
@@ -42,8 +45,8 @@ exports.sendSms = (req, res) => {
     console.log('Selection written successfully');
   });
 
-  if (!value || !label) {
-    return res.status(400).json({ err: 'Must include a valid selection' });
+  if (process.env.DISABLE_APIS) {
+    return res.status(200).json({ status: 'apiDisabled', message });
   }
 
   const vonage = new VonageSDK({

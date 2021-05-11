@@ -1,9 +1,9 @@
+const path = require('path');
 const express = require('express');
 const app = express();
 const cors = require('cors');
 const dotenv = require('dotenv');
 const routes = require('./routes');
-const path = require('path');
 
 dotenv.config({ path: path.resolve('api.env') });
 
@@ -21,7 +21,7 @@ app.use('/api', routes);
 // general error handler
 app.use(function (err, req, res, next) {
   console.error(err.stack);
-  res.status(500).send('Server failed to process request');
+  res.status(500).send({ err });
 });
 
 app.listen(process.env.NODE_PORT, () =>
