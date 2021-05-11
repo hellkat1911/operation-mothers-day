@@ -22,6 +22,7 @@
   "scripts": {
     "front": "env-cmd -f .env.development react-scripts start",
     "back": "nodemon api/server.js",
+    "server": "node api/server.js",
     "start": "concurrently \"npm run front\" \"npm run back\" --names \"💻,📦\" --prefix name",
     "build": "react-scripts build",
     "test": "react-scripts test",
